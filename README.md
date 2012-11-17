@@ -1,0 +1,4 @@
+puppet-headphones
+=================
+
+Install headphones

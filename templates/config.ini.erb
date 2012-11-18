@@ -7,8 +7,10 @@ http_password = ""
 http_root = <%= headphones_webroot %>
 http_proxy = 0
 launch_browser = 0
-api_enabled = 0
-api_key = ""
+<% if @api_key %>
+api_enabled = 1
+api_key = "<%= api_key %>"
+<% end %>
 log_dir = <%= log_dir %>
 cache_dir = <%= cache_dir %>
 git_path = ""
@@ -64,7 +66,7 @@ encoderquality = 2
 encodervbrcbr = cbr
 encoderlossless = 1
 delete_lossless_files = 1
-mirror = musicbrainz.org
+mirror = <%= musicbrainz_mirror %>
 customhost = localhost
 customport = 5000
 customsleep = 1

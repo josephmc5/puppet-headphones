@@ -21,6 +21,7 @@ class headphones::params (
     $url = hiera("headphones_git_url", "git://github.com/rembo10/headphones.git"),
     $proxy_nginx = hiera("proxy_nginx", "false"),
     $proxy_apache = hiera("proxy_apache", "false"),
+    $logrotate = hiera("logrotate", "false"),
 )
 {
     $log_dir = "$base_dir/headphones/log"

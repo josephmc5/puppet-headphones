@@ -24,6 +24,7 @@ class headphones::params (
     $logrotate = hiera("logrotate", "false"),
 )
 {
+    $services_user = hiera("services_user")
     $log_dir = "$base_dir/headphones/log"
     $data_dir = "$base_dir/headphones/data"
     $cache_dir = "$base_dir/headphones/cache"

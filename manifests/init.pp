@@ -5,18 +5,15 @@ class headphones inherits headphones::params {
     include python::virtualenv
     include supervisor
 	
-	user { 'headphones':
-        allowdupe => false,
-        ensure => 'present',
-        shell => '/bin/bash',
-        home => "$base_dir/headphones",
-        password => '*',
-    }
+#	user { "$services_user":
+#        allowdupe => false,
+#        ensure => 'present',
+#    }
 
     file { "$base_dir/headphones":
         ensure => directory,
-        owner => 'headphones',
-        group => 'headphones',
+        owner => "$services_user",
+        group => "$services_user",
         mode => '0644',
     }
     exec { 'venv-create-headphones':
@@ -39,8 +36,8 @@ class headphones inherits headphones::params {
             stdout_logfile => "$base_dir/headphones/log/supervisor.log",
             stderr_logfile => "$base_dir/headphones/log/supervisor.log",
             command => "$base_dir/headphones/venv/bin/python $base_dir/headphones/src/Headphones.py --datadir $base_dir/headphones/data --config $base_dir/headphones/config.ini",
-            user => 'headphones',
-            group => 'headphones',
+            user => "$services_user",
+            group => "$services_user",
             directory => "$base_dir/headphones/src/",
             require => Exec['download-headphones'],
     }

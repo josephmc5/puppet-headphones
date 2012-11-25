@@ -10,24 +10,24 @@ class headphones::config {
     }
     file { "$log_dir":
         ensure => directory,
-        owner => 'headphones',
-        group => 'headphones',
+        owner => "$services_user",
+        group => "$services_user",
         mode => '0644',
     }
     file { "$base_dir/headphones/config/":
         ensure => directory,
-        owner => 'headphones',
-        group => 'headphones',
+        owner => "$services_user",
+        group => "$services_user",
     }
     file { "$base_dir/headphones/data/":
         ensure => directory,
-        owner => 'headphones',
-        group => 'headphones',
+        owner => "$services_user",
+        group => "$services_user",
     }
     file { "$base_dir/headphones/config.ini":
         content => template('headphones/config.ini.erb'),
-        owner => 'headphones',
-        group => 'headphones',
+        owner => "$services_user",
+        group => "$services_user",
         mode => '0644',
         require => File["$base_dir/headphones/config/"],
         notify => Service['supervisor::headphones'],
